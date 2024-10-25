@@ -1,18 +1,18 @@
-# Salesforce DX Project: Next Steps
+# Installation
+Available on the AppExchange as an unmanaged package installation, or manually deploy the repository from Github.
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+# Package Information
 
-## How Do You Plan to Deploy Your Changes?
+This package has been created to provide a basic setup for notifying an organisation’s Data Cloud admin users of failures that may occur with the Data Cloud platform in relation to the following configuration:
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+* Data Streams
+* Data Transforms
+* Calculated Insights
+* Segments
+* Activations
+* Identity Resolution Rules
 
-## Configure Your Salesforce DX Project
+For each of the above configuration types (“metadata”), a flow has been created to manage the failures. Using Custom Metadata, you can control the behaviour of any error notifications.
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
-
-## Read All About It
-
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+# Features & Setup Guide
+See the admin guide here: https://salesforce.quip.com/QBk3ANs9GSNm

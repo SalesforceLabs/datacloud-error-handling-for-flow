@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Data_Cloud_Purge_Failure_Logs</fullName>
+        <categories>Data Cloud</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Data Cloud: Purge Failure Logs After (Days)</shortDescription>
+        <value>365</value>
+    </labels>
+</CustomLabels>
