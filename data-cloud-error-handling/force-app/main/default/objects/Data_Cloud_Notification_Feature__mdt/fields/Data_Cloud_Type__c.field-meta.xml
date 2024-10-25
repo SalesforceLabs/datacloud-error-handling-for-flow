@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Data_Cloud_Type__c</fullName>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <inlineHelpText>Set this field to a Data Cloud configuration type e.g. Data Stream or Calculated Insights</inlineHelpText>
+    <label>Data Cloud Type</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Data Stream</fullName>
+                <default>true</default>
+                <label>Data Stream</label>
+            </value>
+            <value>
+                <fullName>Data Transform</fullName>
+                <default>false</default>
+                <label>Data Transform</label>
+            </value>
+            <value>
+                <fullName>Identity Resolution</fullName>
+                <default>false</default>
+                <label>Identity Resolution</label>
+            </value>
+            <value>
+                <fullName>Calculated Insight</fullName>
+                <default>false</default>
+                <label>Calculated Insight</label>
+            </value>
+            <value>
+                <fullName>Segment</fullName>
+                <default>false</default>
+                <label>Segment</label>
+            </value>
+            <value>
+                <fullName>Activation</fullName>
+                <default>false</default>
+                <label>Activation</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

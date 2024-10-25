@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Notification_Frequency__c</fullName>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <inlineHelpText>Get notifications for the first failure of a given day, or for all failures regardless of whether somebody has already been received for that day.</inlineHelpText>
+    <label>Notification Frequency</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>First Error</fullName>
+                <default>true</default>
+                <label>First Error</label>
+            </value>
+            <value>
+                <fullName>All Errors</fullName>
+                <default>false</default>
+                <label>All Errors</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

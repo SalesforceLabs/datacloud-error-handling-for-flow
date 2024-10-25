@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Notification_Body__c</fullName>
+    <defaultValue>&quot;There was a problem with the configuration in Data Cloud. Please review it and investigate any issues.&quot;</defaultValue>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <inlineHelpText>Set the text that will be sent to the user upon receiving this notification and displayed as the body in the notification bell in Salesforce.</inlineHelpText>
+    <label>Notification Body</label>
+    <length>32768</length>
+    <type>LongTextArea</type>
+    <visibleLines>5</visibleLines>
+</CustomField>
