@@ -4,7 +4,7 @@
     <assignments>
         <name>Assign_all_records_to_a_collection</name>
         <label>Assign all records to a collection</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>252</locationY>
         <assignmentItems>
             <assignToReference>allRecords</assignToReference>
@@ -17,11 +17,27 @@
             <targetReference>Filter_old_records</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <name>Record_Count</name>
+        <label>Record Count</label>
+        <locationX>182</locationX>
+        <locationY>468</locationY>
+        <assignmentItems>
+            <assignToReference>CountFilteredRecords</assignToReference>
+            <operator>AssignCount</operator>
+            <value>
+                <elementReference>Filter_old_records</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Records_to_delete</targetReference>
+        </connector>
+    </assignments>
     <collectionProcessors>
         <name>Filter_old_records</name>
         <elementSubtype>FilterCollectionProcessor</elementSubtype>
         <label>Filter old records</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>360</locationY>
         <assignNextValueToReference>currentItem_Collection_Filter_1</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
@@ -35,9 +51,31 @@
             </rightValue>
         </conditions>
         <connector>
-            <targetReference>Delete_Old_Logs</targetReference>
+            <targetReference>Record_Count</targetReference>
         </connector>
     </collectionProcessors>
+    <decisions>
+        <name>Records_to_delete</name>
+        <label>Records to delete?</label>
+        <locationX>182</locationX>
+        <locationY>576</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>CountFilteredRecords</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Delete_Old_Logs</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
     <description>Delete Data Cloud Failure Log records at a given point in time as specified in a Custom Label.</description>
     <environments>Default</environments>
     <formulas>
@@ -69,12 +107,12 @@
     <recordDeletes>
         <name>Delete_Old_Logs</name>
         <label>Delete Old Logs</label>
-        <locationX>176</locationX>
-        <locationY>468</locationY>
+        <locationX>50</locationX>
+        <locationY>684</locationY>
         <inputReference>Filter_old_records</inputReference>
     </recordDeletes>
     <start>
-        <locationX>50</locationX>
+        <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Assign_all_records_to_a_collection</targetReference>
@@ -95,6 +133,14 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Data_Cloud_Failure__c</objectType>
+    </variables>
+    <variables>
+        <name>CountFilteredRecords</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
     </variables>
     <variables>
         <name>currentItem_Collection_Filter_1</name>
