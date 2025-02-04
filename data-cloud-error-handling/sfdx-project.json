@@ -6,7 +6,7 @@
     }
   ],
   "name": "data-cloud-error-handling",
-  "namespace": "",
+  "namespace": "data_cloud",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "62.0"
 }

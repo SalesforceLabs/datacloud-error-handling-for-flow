@@ -1,0 +1,36 @@
+<template>
+    <lightning-card icon-name="utility:alert" title="Data Cloud Change Notification Settings">
+        <template lwc:if={showSpinner}>
+            <div class="slds-var-p-around_x-small">
+                <lightning-spinner alternative-text="Loading..." role="status"></lightning-spinner>
+            </div>
+        </template>
+
+        <div class="slds-var-p-around_x-small slds-grid">Change existing settings for Data Cloud notifications, then
+            click Save to deploy them. You will be notified when the deployment has finished.</div>
+        <div class="slds-var-p-around_x-small slds-grid">Filter the table by Data Cloud Type &amp; Notification Type.
+            The results are updated when you click Apply Filter.</div>
+
+        <!-- Component as found here: https://github.com/SFDC-Hub/lwc-dynamic-datable-filter -->
+        <!-- Minor fixes to alignment applied to button using custom CSS--> 
+        <div lwc:if={loadFilters}>
+            <c-dynamic-Filter filters={filters} tdata={data} onfilter={handleFilter}>></c-dynamic-Filter>
+        </div>
+
+        <div lwc:if={showTable}>
+            <!-- Table Component. Using a custom implementation to support picklists, and toggles -->
+            <div style="height: 500px">
+                <c-custom-Datatable key-field="data_cloud__Data_Cloud_Record_Name__c" data={data}
+                    draft-values={saveDraftValues} columns={columns} errors={errors} onsave={handleSave}
+                    hide-checkbox-column show-row-number-column="true" wrap-text-max-lines="2" ontoggleselect={handleToggleSelect} >
+                </c-custom-Datatable>
+            </div>
+        </div>
+        
+        <div lwc:if={noRecords}>
+            <div class="slds-var-p-around_x-small"><lightning-icon size="small" icon-name="utility:ban"
+                    alternative-text="No Records Found"></lightning-icon> No Data Cloud notification settings are
+                configured.</div>
+        </div>
+    </lightning-card>
+</template>

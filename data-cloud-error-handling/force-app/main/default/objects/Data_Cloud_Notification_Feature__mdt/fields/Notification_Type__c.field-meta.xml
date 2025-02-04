@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Notification_Type__c</fullName>
+    <deprecated>false</deprecated>
     <fieldManageability>DeveloperControlled</fieldManageability>
     <inlineHelpText>Choose whether a notification is delivered via the in-app notifications or via an email.</inlineHelpText>
     <label>Notification Type</label>

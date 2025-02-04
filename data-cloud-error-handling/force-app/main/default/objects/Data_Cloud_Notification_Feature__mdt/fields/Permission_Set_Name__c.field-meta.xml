@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Permission_Set_Name__c</fullName>
+    <deprecated>false</deprecated>
     <externalId>false</externalId>
     <fieldManageability>DeveloperControlled</fieldManageability>
     <inlineHelpText>Enter a Permission Set&apos;s API Name that a user must have to receive notifications. By default, use GenieAdmin which is the API name of the out of the box &quot;Data Cloud Admin&apos; Permission Set which will be assigned to all Data Cloud admins who can investigate any notifications.</inlineHelpText>

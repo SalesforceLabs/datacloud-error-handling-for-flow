@@ -1,0 +1,24 @@
+<template>
+	<template lwc:if={filters}>
+		<div class="slds-grid slds-gutters slds-var-p-left_small lgc-bg">
+			<template for:each={filters} for:item="filter">
+				<div class="slds-var-p-around_x-small slds-col" key={filter.api}>
+					<template lwc:if={filter.stdIp}>
+						<lightning-input name={filter.api} data-id={filter.api} type={filter.type} label={filter.label} value={filter.value}
+							onchange={handleChange}>
+						</lightning-input>
+					</template>
+					<template lwc:if={filter.picklist}>
+						<lightning-combobox name={filter.api} data-id={filter.api} label={filter.label} value={filter.value}
+							placeholder="-Select-" options={filter.options} onchange={handleChange}>
+						</lightning-combobox>
+					</template>
+				</div>
+			</template>
+			<div class="slds-var-p-around_x-small custom-padding-top-alignment slds-col">
+				<lightning-button variant="brand" label="Reset Filters" title="Reset Filter" onclick={resetFilters}>
+				</lightning-button>
+			</div>
+		</div>
+	</template>
+</template>

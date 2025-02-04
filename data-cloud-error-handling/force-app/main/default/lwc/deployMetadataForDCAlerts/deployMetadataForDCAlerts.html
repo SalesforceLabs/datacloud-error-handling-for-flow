@@ -1,0 +1,56 @@
+<template>
+    <lightning-card icon-name="utility:alert" title="Data Cloud Initial Notification Setup">
+        <div class="slds-var-p-around_x-small">This tool queries your org's Data Cloud configuration, and creates the default notification setup for each record found using the Default Settings configured</div>
+        <!-- <div class="slds-var-p-around_x-small"><lightning-icon size="small" icon-name="utility:warning" alternative-text="Warning" title="Warning!"></lightning-icon> WARNING! Do not use this tool if you have changed any values after setup as your changes will be overwritten!! </div> -->
+
+        <lightning-accordion>
+            <lightning-accordion-section name="Default_Settings" label="Default Settings" title="Default Settings">
+                <lightning-icon size="small" icon-name="utility:record_create" alternative-text="Set Defaults"></lightning-icon> Choose the default settings that you want to apply to all new notifications when you deploy.
+                <div class="slds-var-p-around_x-small">
+                    <lightning-input type="text" label="Permission Set API Name" message-when-value-missing="Please provide a Permission Set API Name, otherwise notifications will not be sent." max-length="255" name="Permission_Set_Name__c" onchange={handleChange} field-level-help="By default, GenieAdmin is the Data Cloud Permission Set for Data Cloud Admins. If you are licenced for CDP, use CDPAdmin instead. Custom Permission Sets can be used as required but ensure that these users have access to Data Cloud to prevent access errors when clicking links in emails or notifications." value="GenieAdmin" required></lightning-input> 
+                    <lightning-combobox
+                        label="Notification Type"
+                         name="Notification_Type__c"
+                         value="Notification Bell"
+                         options={optionsType}
+                         field-level-help="Send an in-app notification or an email when a failure occurs."
+                         required
+                         onchange={handleChange}>
+                    </lightning-combobox>
+                    <lightning-combobox
+                        label="Notification Frequency"
+                        name="Notification_Frequency__c"
+                        value="First Error"
+                        options={optionsFrequency}
+                        field-level-help="Receive notifications for every error, or only for the first error in a 24 hour period."
+                        required
+                        onchange={handleChange}>
+                    </lightning-combobox>
+                    
+                    <template lwc:if={showTemplateField}>
+                        <lightning-input type="text" label="Email Template Name" max-length="255" field-level-help="Set to the API name of an email template which will be used when a notification is sent." message-when-value-missing="Provide an email template API Name to prevent errors sending notifications" name="Notification_Template_Name__c" onchange={handleChange} value="" required></lightning-input> <!-- TODO Include a default template in the package, put the API Name here. -->
+                    </template>
+                    <template lwc:else>
+                        <lightning-input type="text" label="Notification Title" max-length="255" field-level-help="Notification title appears in app when a notification is received in bold text" message-when-value-missing="Provide a notification title value to prevent errors sending notifications." name="Notification_Title__c" onchange={handleChange} value="Failure Detected!" required></lightning-input>
+                        <lightning-textarea label="Notification Body" max-length="255" name="Notification_Body__c" field-level-help="Notification body appears in app when a notification is received in below the title specified above. Use the placeholder {recordName} to include the Data Cloud metadata name as part of the notification content." message-when-value-missing="Provide a notification body value to prevent errors sending notifications" onchange={handleChange} value="There was a problem with the {recordName} configuration in Data Cloud. Please review it and investigate any issues." required> </lightning-textarea>
+                    </template>
+            
+                    <div class="slds-var-p-top_x-small"><lightning-input type="toggle" message-toggle-inactive="Notification records will be created, but they will not be enabled by default. Are you sure?" label="Enable Notification?" name="Enable_Notifications__c" onchange={handleChange} checked></lightning-input></div>        
+                </div>
+            </lightning-accordion-section>
+            <lightning-accordion-section name="Deployment" label="Deployment" title="Deployment">
+                <div class="slds-var-p-around_x-small">Click {defaultButtonLabel} to setup alerts for your Data Cloud configuration for the first time.</div>
+                <div class="slds-var-p-around_x-small">
+                    <lightning-checkbox-group name="typesToDeploy"
+                        options={options}
+                        value={value}
+                        onchange={handleChange}>
+                    </lightning-checkbox-group>
+                </div>
+                <div class="slds-var-p-around_x-small">   
+                    <lightning-button variant="brand" onclick={handleDeploy} disabled={isButtonDisabled} label={buttonLabel}></lightning-button>
+                </div>
+            </lightning-accordion-section>
+        </lightning-accordion>
+    </lightning-card>
+</template>
