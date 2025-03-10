@@ -20,7 +20,7 @@ private class processMetadataForDCAlertsTest {
     @isTest
     static void testAllTypes() {
         String formInputs = '{"typesToDeploy": "DataStream"}';
-        DataStream ds = new DataStream();
+        /*DataStream ds = new DataStream();
         ds.Name = 'Test';
         ds.RefreshMode = 'FULL_REFRESH';
         ds.RefreshFrequency = 'NONE';
@@ -28,12 +28,18 @@ private class processMetadataForDCAlertsTest {
         ds.Description = 'test';
         ds.RefreshHours = '1';
         ds.RefreshDayOfMonth = 1;
-        ds.RefreshDayOfWeek = 1;
+        ds.RefreshDayOfWeek = 1;*/
         //ds.DataStreamStatus = 'INACTIVE';
         //ds.IsNewFieldsAvailable = true;
         //ds.StreamType = 'INGEST';
         //ds.ImportRunStatus = 'SUCCESS';
         //insert ds;
+
+        Integer startingNum = 1;
+        String result = String.valueOf(startingNum++);
+        Schema.SObjectType sot = DataStream.SObjectType;
+        Id fakeId = sot.getDescribe().getKeyPrefix() + '0'.repeat(12-result.length()) + result;
+        DataStream ds = new DataStream(Id = fakeId, Name = 'Test');
 
         test.startTest();
         try {

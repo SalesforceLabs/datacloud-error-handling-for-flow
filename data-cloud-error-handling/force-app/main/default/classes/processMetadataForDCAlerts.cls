@@ -117,50 +117,24 @@ public with sharing class processMetadataForDCAlerts implements Metadata.DeployC
     @AuraEnabled
     public static Id newSetup(String formInputs) {
 
-        try {
+        //try {
             List<SObject> metadataToDeploy = new List<SObject>();
             Map<String, Object> formValues = (Map<String,Object>) JSON.deserializeUntyped(formInputs);
             String typesToDeploy = String.valueOf(formValues.get('typesToDeploy'));
+            //System.debug('typesToDeploy: ' + typesToDeploy);
 
-            //Deploy Data Stream if the option is seleted and there are any records to deploy.
-            if(typesToDeploy.contains('DataStream')) {
-                for(DataStream ds : [SELECT Id, Name FROM DataStream]) {
-                    metadataToDeploy.add(ds);
-                }
-            }
-
-            //Deploy Data Transforms if the option is seleted and there are any records to deploy.
-            if(typesToDeploy.contains('MktDataTransform')) {
-                for(MktDataTransform dt : [SELECT Id, Name FROM MktDataTransform]) {
-                    metadataToDeploy.add(dt);
-                }
-            }
-
-            //Deploy Identity Resolution if the option is seleted and there are any records to deploy.
-            if(typesToDeploy.contains('IdentityResolution')) {            
-                for(IdentityResolution ir : [SELECT Id, Name FROM IdentityResolution]) {
-                    metadataToDeploy.add(ir);
-                }
-            }
-
-            //Deploy Calculated Insights if the option is seleted and there are any records to deploy.
-            if(typesToDeploy.contains('MktCalculatedInsight')) {
-                for(MktCalculatedInsight ci : [SELECT Id, Name FROM MktCalculatedInsight]) {
-                    metadataToDeploy.add(ci);
-                }
-            }
-
-            //Deploy Segments if the option is seleted and there are any records to deploy.
-            if(typesToDeploy.contains('MarketSegment')) {
-                for(MarketSegment seg : [SELECT Id, Name FROM MarketSegment]) {
-                    metadataToDeploy.add(seg);
-                }
-            }
-
-            //Deploy Segment Activations if the option is seleted and there are any records to deploy.
-            if(typesToDeploy.contains('MarketSegmentActivation')) {
-                for(MarketSegmentActivation act : [SELECT Id, Name FROM MarketSegmentActivation]) {
-                    metadataToDeploy.add(act);
+            //Build a list of the records to deploy.
+            //NOTE: The typesToDeploy string is a semi-colon separated list of the SObject names from multiple check boxes on the UI
+            //The query is built dynamically based on the selected types. Whilst this is in a loop, it is limited to 7 queries.
+            //Doing it like this makes things much easier to create a Test Classes and add new types in the future.
+            if(typesToDeploy.length() > 0) {
+                //System.debug('In here: ' + typesToDeploy.length());
+                for(String recordType : typesToDeploy.split(';')) {
+                    //System.debug('Processing: ' + recordType);
+                    for(SObject records : Database.query('SELECT Id, Name FROM ' + recordType)) {
+                        //System.debug('records: ' + records);
+                        metadataToDeploy.add(records);
+                    }
                 }
             }
 
@@ -175,12 +149,12 @@ public with sharing class processMetadataForDCAlerts implements Metadata.DeployC
                 return Metadata.Operations.enqueueDeployment(mdContainer, callback);
             }
             else { 
-                
+                throw new AuraHandledException('No alerts to deploy for the selected Data Cloud metadata types.');
             }
-        }
-        catch(Exception e) {
-            throw new AuraHandledException('No alerts to deploy for the selected Data Cloud metadata types.');
-        }
+        //}
+        //catch(Exception e) {
+        //    throw new AuraHandledException('No alerts to deploy for the selected Data Cloud metadata types.');
+        //}
     }
 
     @AuraEnabled
