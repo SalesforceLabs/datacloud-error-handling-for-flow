@@ -429,6 +429,13 @@
                 <elementReference>recordName</elementReference>
             </value>
         </filters>
+        <filters>
+            <field>Data_Cloud_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordType</elementReference>
+            </value>
+        </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Data_Cloud_Notification_Feature__mdt</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
