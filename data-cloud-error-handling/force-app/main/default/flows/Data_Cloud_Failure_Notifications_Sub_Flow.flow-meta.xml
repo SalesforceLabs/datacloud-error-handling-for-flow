@@ -35,7 +35,6 @@
         </inputParameters>
         <nameSegment>emailSimple</nameSegment>
         <offset>0</offset>
-        <versionSegment>1</versionSegment>
     </actionCalls>
     <actionCalls>
         <name>Send_Notification</name>
@@ -77,7 +76,6 @@
         </inputParameters>
         <nameSegment>customNotificationAction</nameSegment>
         <offset>0</offset>
-        <versionSegment>1</versionSegment>
     </actionCalls>
     <apiVersion>62.0</apiVersion>
     <assignments>
@@ -429,13 +427,6 @@
             <operator>EqualTo</operator>
             <value>
                 <elementReference>recordName</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>Data_Cloud_Type__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>4c61b250-5f24-44ce-ac7c-4465a8b8698a</stringValue>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
