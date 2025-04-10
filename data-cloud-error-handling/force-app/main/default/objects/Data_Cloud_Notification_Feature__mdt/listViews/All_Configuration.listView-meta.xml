@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Configuration</fullName>
+    <columns>Data_Cloud_Record_Name__c</columns>
+    <columns>Data_Cloud_Type__c</columns>
+    <columns>Notification_Type__c</columns>
+    <columns>Notification_Frequency__c</columns>
+    <columns>Permission_Set_Name__c</columns>
+    <columns>Notification_Title__c</columns>
+    <columns>Notification_Body__c</columns>
+    <columns>Notification_Template_Name__c</columns>
+    <columns>Enable_Notifications__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Configuration</label>
+</ListView>

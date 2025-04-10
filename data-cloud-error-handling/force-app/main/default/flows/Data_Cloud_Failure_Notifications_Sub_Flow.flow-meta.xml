@@ -5,7 +5,7 @@
         <name>Send_Email</name>
         <label>Send Email</label>
         <locationX>402</locationX>
-        <locationY>2522</locationY>
+        <locationY>2630</locationY>
         <actionName>emailSimple</actionName>
         <actionType>emailSimple</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -24,13 +24,13 @@
         <inputParameters>
             <name>emailSubject</name>
             <value>
-                <elementReference>Get_Notification_Settings.Notification_Title__c</elementReference>
+                <elementReference>Get_Email_Template_Id.Subject</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>emailBody</name>
             <value>
-                <elementReference>Get_Notification_Settings.Notification_Body__c</elementReference>
+                <elementReference>Get_Email_Template_Id.Body</elementReference>
             </value>
         </inputParameters>
         <nameSegment>emailSimple</nameSegment>
@@ -311,7 +311,7 @@
             <targetReference>Build_Email_Address_Collection</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
-            <targetReference>Send_Email</targetReference>
+            <targetReference>Get_Email_Template_Id</targetReference>
         </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
@@ -375,6 +375,27 @@
         <object>Data_Cloud_Failure__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
+    <recordLookups>
+        <name>Get_Email_Template_Id</name>
+        <label>Get Email Template Id</label>
+        <locationX>402</locationX>
+        <locationY>2522</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Send_Email</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Notification_Settings.Notification_Template_Name__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>EmailTemplate</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordLookups>
         <description>Get previous failures for the given day.</description>
         <name>Get_Failures</name>

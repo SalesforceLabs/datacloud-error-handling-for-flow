@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Enforce_Template_Name_if_Email</fullName>
+    <active>true</active>
+    <description>Force the user to specify an email template name if they are using Email.</description>
+    <errorConditionFormula>AND(ISPICKVAL(Notification_Type__c, &quot;Email&quot;), ISBLANK(Notification_Template_Name__c))</errorConditionFormula>
+    <errorDisplayField>Notification_Template_Name__c</errorDisplayField>
+    <errorMessage>Please specify an email template when using the Email notification type.</errorMessage>
+</ValidationRule>
